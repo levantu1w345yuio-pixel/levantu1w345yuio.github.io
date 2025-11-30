@@ -1,272 +1,372 @@
+<!-- ======= THÊM KEY Ở ĐÂY ============== -->
+<script>
+    // hãy nhập key mà bạn muốn ở đây
+    const validKeys = ["Filethaykhanhba"];
+</script>
+<!-- 
+    Muốn chuyển thành File cấu hình iOS 
+    Hoặc thêm tính năng gì (phí nhẹ)
+    ib Telegram https://t.me/ghen1234g 
+-->
+
+
 <!doctype html>
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ứng dụng (giakhanh)</title>
+  <title>Chức Năng Game — Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#071025; --card:#0d1722; --accent:#06b6d4; --muted:#9fb0c3; --on:#10b981; --danger:#ef4444;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color-scheme: dark;
+    :root {
+      --bg: #0f1113;
+      --card: #121315;
+      --muted: #9aa0a6;
+      --highlight-border: #1e90ff;   
+      --toggle-bg: #0f1113;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0; background:linear-gradient(180deg,#021023,#071428 70%); color:#e6eef6;}
-    .wrap{max-width:980px; margin:28px auto; padding:18px; border-radius:12px;}
-    .topbar{display:flex; gap:12px; align-items:center; justify-content:space-between; margin-bottom:12px;}
-    .brand{display:flex; gap:12px; align-items:center;}
-    .avatar{width:56px; height:56px; border-radius:10px; overflow:hidden; background:linear-gradient(180deg,#0b2533,#072233); display:flex; align-items:center; justify-content:center; cursor:pointer; border:2px solid rgba(255,255,255,0.03); transition:transform .15s, box-shadow .15s;}
-    .avatar:hover{transform:translateY(-3px); box-shadow:0 8px 30px rgba(2,6,23,0.6);}
-    .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
-    .brand h1{font-size:18px; margin:0;}
-    .menu-info{font-size:13px; color:var(--muted);}
-    .card{background:var(--card); padding:16px; border-radius:12px; margin-bottom:14px; box-shadow:0 6px 30px rgba(2,6,23,0.7);}
-    label{display:block; margin-bottom:6px; color:var(--muted); font-size:13px;}
-    input[type="text"], input[type="password"]{width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:rgba(255,255,255,0.02); color:inherit;}
-    .btn{display:inline-block; padding:8px 12px; background:var(--accent); color:#012; border-radius:8px; border:none; cursor:pointer; font-weight:600; margin-right:8px;}
-    .btn.ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted);}
-    .row{display:flex; gap:12px; align-items:center; margin-top:10px; flex-wrap:wrap;}
-    .switch {position:relative; width:56px; height:30px; background:#132033; border-radius:999px; cursor:pointer; display:inline-block; transition:background .18s;}
-    .switch .dot{position:absolute; top:3px; left:3px; width:24px; height:24px; background:#cfeff4; border-radius:50%; transition:transform .18s;}
-    .switch.on {background:linear-gradient(90deg,var(--on), #38bdf8);}
-    .switch.on .dot{transform:translateX(26px); background:white;}
-    .small{font-size:13px; color:var(--muted);}
-    .display {margin-top:12px; padding:14px; background:rgba(255,255,255,0.02); border-radius:8px; min-height:56px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; color:var(--muted); transition:transform .18s;}
-    .display.on{color:var(--on); background:linear-gradient(90deg, rgba(16,185,129,0.06), rgba(6,182,212,0.02));}
-    .file-drop {border:2px dashed rgba(255,255,255,0.03); padding:18px; border-radius:8px; text-align:center; transition:background .12s, border-color .12s;}
-    .file-drop.drag {background:rgba(6,182,212,0.03); border-color:rgba(6,182,212,0.4);}
-    .hidden{display:none !important;}
-    .logout {background:var(--danger); border-radius:8px; padding:8px 10px; color:#fff; border:none; cursor:pointer;}
-    footer{font-size:13px; color:var(--muted); margin-top:8px; text-align:center;}
-    /* Overlay Chiến Đê */
-    #overlay{position:fixed; inset:0; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; z-index:999; color:#34d399; font-size:48px; font-weight:800; letter-spacing:2px; animation:fadeIn .4s ease-out;}
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body, html {
+      height: 100%;
+      font-family: Inter, system-ui, Arial;
+      color: #fff;
+      overflow-x: hidden;
+      background-color: var(--bg);
+    }
+
+    body {
+      background: url("https://v1.pinimg.com/videos/mc/720p/04/16/a5/0416a538a33dc1988e9207696cb63c78.mp4") no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+      margin: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-wrap {
+      background: linear-gradient(135deg, #0a2a6b, #1e90ff);
+      padding: 14px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      box-shadow: 0 10px 28px rgba(30,144,255,0.35), 
+                  0 0 22px rgba(30,144,255,0.45);
+    }
+
+    .logo { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(0,0,0,0.6);}
+    .logo img { width: 60%; height: 60%; object-fit: contain; }
+
+    .header-text h1 { font-size: 20px; margin: 0; }
+    .header-text small { font-size: 13px; color: #eaf4ff; margin-top: 2px; display: block; }
+
+    .card {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 24px rgba(2, 6, 23, 0.6);
+      width: 100%;
+      backdrop-filter: blur(6px);
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--highlight-border);
+      box-shadow: 0 0 12px rgba(30,144,255,0.4);
+    }
+
+    .left { display: flex; align-items: center; gap: 12px; }
+    .icon { width: 80px; height: 53px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .icon img { width: 94%; height: 90%; object-fit: contain; }
+
+    .text { min-width: 0; }
+    .title { font-weight: 600; margin: 0; font-size: 16px; }
+    .desc { color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+    .toggle-wrap { position: relative; }
+    .toggle {
+      width: 52px;
+      height: 30px;
+      border-radius: 999px;
+      background: #0b0c0d; 
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      padding: 4px;
+      cursor: pointer;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .knob {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      transform: translateX(0);
+      transition: transform 0.2s cubic-bezier(.2,.9,.3,1), box-shadow 0.2s ease;
+      box-shadow: 0 4px 12px rgba(2,6,23,0.6);
+    }
+    .toggle.on {
+      background: linear-gradient(90deg, #0d47a1, #1976d2, #42a5f5);
+      box-shadow: 0 0 12px rgba(33,150,243,0.75), 0 0 28px rgba(33,150,243,0.35);
+    }
+    .toggle.on .knob {
+      transform: translateX(22px);
+      box-shadow: 0 0 10px rgba(66,165,245,0.9), 0 6px 14px rgba(2,6,23,0.6);
+    }
+
+    .key-section {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 14px;
+      margin-top: 20px;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border: 1px solid var(--highlight-border);
+      box-shadow: 0 0 12px rgba(30,144,255,0.4);
+    }
+    .key-section .input-group { display: flex; gap: 12px; align-items: center; }
+
+    .input-group input {
+      padding: 10px;
+      border-radius: 8px;
+      background: #121315;
+      border: 1px solid var(--highlight-border);
+      color: #fff;
+      width: 100%;
+    }
+    .input-group button { padding: 10px; border-radius: 8px; background: #1e90ff; border: none; color: #fff; cursor: pointer; }
+    .input-group button:hover { background: #0a6ed1; }
+
+    .error-msg { color: #ff4c4c; font-weight: 600; margin-top: 10px; display: none; }
+    .success-msg { color: #3fe6a7; font-weight: 600; margin-top: 10px; display: none; }
+
+    @media (max-width: 420px) {
+      .container { padding: 0 12px; }
+      .card { padding: 12px; }
+    }
+
+    /* sao nhỏ */
+    .star {
+      position: absolute;
+      font-size: 16px;
+      color: #ffd700;
+      text-shadow: 0 0 6px #fff, 0 0 12px #ffdd55, 0 0 18px #ffaa00;
+      pointer-events: none;
+      opacity: 0;
+      animation: star-fly 1s ease-out forwards;
+    }
+
+    @keyframes star-fly {
+      0%   { transform: scale(0.5) translate(0,0); opacity: 1; }
+      80%  { opacity: 1; }
+      100% { transform: scale(0.8) translate(var(--dx), var(--dy)); opacity: 0; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div id="avatar" class="avatar" title="Đổi avatar">
-          <svg id="defaultAvatar" width="44" height="44" viewBox="0 0 24 24" fill="none" style="display:block">
-            <rect x="1" y="1" width="22" height="22" rx="5" fill="#062a3a"/>
-            <path d="M6 16c1.5-2 4-3 6-3s4.5 1 6 3" stroke="#9fd0e0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="12" cy="9.2" r="2.8" stroke="#9fd0e0" stroke-width="1.2"/>
-          </svg>
-        </div>
-        <div>
-          <h1>Ứng dụng</h1>
-          <div class="menu-info" id="menuUser">Chưa đăng nhập</div>
-        </div>
+  <div class="container">
+    <div class="header-wrap">
+      <div class="logo">
+        <img src="https://i.postimg.cc/1tXmNhsB/58023179-26-D9-42-F1-81-B7-35-F40-CDDF716.jpg" alt="logo">
       </div>
-      <div>
-        <button id="logoutBtn" class="logout hidden">Đăng xuất</button>
+      <div class="header-text">
+        <h1>App Aimbot Sasuke H4X</h1>
+        <small></small>
       </div>
     </div>
 
-    <div class="card" id="loginCard">
-      <strong>Đăng nhập</strong>
-      <label for="username">Tài khoản</label>
-      <input id="username" type="text" placeholder="Nhập tài khoản..." />
-      <label for="password">Mật khẩu</label>
-      <input id="password" type="password" placeholder="Nhập mật khẩu..." />
-      <div class="row">
-        <button id="loginBtn" class="btn">Đăng nhập</button>
-        <button id="clearBtn" class="btn ghost">Xóa</button>
-        <div id="loginMsg" class="small" style="margin-left:8px;"></div>
+    <div class="card">
+      <div class="item">
+        <div class="left">
+          <div class="icon"><img src="https://i.postimg.cc/VvwgBg8C/A5-CD186-E-C2-E1-44-BD-9-E55-C763321-D5-F60.png" alt="desert"></div>
+          <div class="text">
+            <div class="title">DESERT EAGLE</div>
+            <div class="desc">hỗ trợ độ bám tâm 31%</div>
+          </div>
+        </div>
+        <div class="toggle-wrap"><div class="toggle" data-gun="DESERT EAGLE"><div class="knob"></div></div></div>
+      </div>
+
+      <div class="item">
+        <div class="left">
+          <div class="icon"><img src="https://i.postimg.cc/HnsgvQ0r/863-EBF06-16-F5-4-B32-84-E7-55-A8125-EC123.png" alt="ump"></div>
+          <div class="text">
+            <div class="title">UMP Tiểu Liên</div>
+            <div class="desc">hỗ trợ nhạy tâm 50%</div>
+          </div>
+        </div>
+        <div class="toggle-wrap"><div class="toggle" data-gun="UMP"><div class="knob"></div></div></div>
+      </div>
+
+      <div class="item">
+        <div class="left">
+          <div class="icon"><img src="https://i.postimg.cc/TPWBttZ7/6819-E4-BF-FF6-B-4345-B17-E-6-ADAAC4-D3655.png" alt="m1887"></div>
+          <div class="text">
+            <div class="title">Shotgun M1887</div>
+            <div class="desc">đầm tâm khi kéo 30%</div>
+          </div>
+        </div>
+        <div class="toggle-wrap"><div class="toggle" data-gun="M1887"><div class="knob"></div></div></div>
+      </div>
+
+      <div class="item">
+        <div class="left">
+          <div class="icon"><img src="https://i.postimg.cc/T3xczCLN/9-F5-A56-B8-0-B31-4934-8-A45-16-C9196-A97-C7.png" alt="mp40"></div>
+          <div class="text">
+            <div class="title">MP40 Tiểu liên</div>
+            <div class="desc">Giảm loạn tâm khi kéo 45%</div>
+          </div>
+        </div>
+        <div class="toggle-wrap"><div class="toggle" data-gun="MP40"><div class="knob"></div></div></div>
+      </div>
+
+      <div class="item">
+        <div class="left">
+          <div class="icon"><img src="https://i.postimg.cc/h45DZ5wg/A9-B7-A14-C-9497-4290-94-DF-2-F7-DB04-D9-E40.png" alt="recoil"></div>
+          <div class="text">
+            <div class="title">Tâm ảo Aim</div>
+            <div class="desc">Hồng tâm hỗ trợ ngắm</div>
+          </div>
+        </div>
+        <div class="toggle-wrap"><div class="toggle" data-gun="Recoil"><div class="knob"></div></div></div>
       </div>
     </div>
 
-    <div id="appArea" class="hidden">
-      <div class="card">
-        <strong>Bug Màn📱</strong>
-        <div style="display:flex; gap:12px; align-items:center;">
-          <input id="range1" type="range" min="0" max="100" value="25" />
-          <div class="small">Giá trị: <span id="rangeVal">25%</span></div>
-        </div>
-        <div style="margin-top:10px; display:flex; gap:12px; align-items:center;">
-          <div id="switch1" class="switch" role="switch" aria-checked="false" tabindex="0"><span class="dot"></span></div>
-          <button id="onBtn1" class="btn hidden">ON</button>
-        </div>
-        <div id="display1" class="display">—</div>
+    <div class="key-section">
+      <div class="input-group">
+        <input type="password" id="keyInput" placeholder="Nhập Key Kích hoạt Menu ">
+        <button id="activateKey">Kích Hoạt</button>
       </div>
-
-      <div class="card">
-        <strong>Nhẹ Tâm☠️</strong>
-        <div class="row">
-          <button id="showOn2" class="btn ghost">Hiện ON</button>
-          <button id="onBtn2" class="btn hidden">ON</button>
-        </div>
-        <div id="display2" class="display">—</div>
-      </div>
-
-      <div class="card">
-        <strong>File dpi🇻🇳</strong>
-        <div class="row">
-          <button id="pickFileBtn" class="btn">Chọn file</button>
-          <input id="fileInput" type="file" class="hidden" />
-        </div>
-        <div id="display3" class="display">—</div>
-      </div>
-
-      <div class="card">
-        <strong>File Bug độ nhạy</strong>
-        <div id="dropArea" class="file-drop" style="margin-top:8px; cursor:pointer;">
-          Kéo thả file vào đây, hoặc bấm để chọn.
-        </div>
-        <input id="dropInput" type="file" class="hidden" />
-        <div id="display4" class="display">—</div>
-      </div>
-
-      <!-- Nút Chạy tất cả -->
-      <div style="text-align:center; margin-top:20px;">
-        <button id="runAllBtn" class="btn" style="font-size:18px;">Chạy tất cả</button>
-      </div>
+      <div id="errorMessage" class="error-msg">Sai Key. Vui lòng thử lại!</div>
+      <div id="successMessage" class="success-msg">Thông báo: Kích hoạt thành công!</div>
     </div>
-
-    <footer>Phiên bản chính thức</footer>
   </div>
 
-<script>
-  const CORRECT_USER = "giakhanh";
-  const CORRECT_PASS = "Bobaro";
+  <script>
+    // const validKeys = ["Filethaykhanhba"];
 
-  const loginBtn = document.getElementById("loginBtn");
-  const clearBtn = document.getElementById("clearBtn");
-  const logoutBtn = document.getElementById("logoutBtn");
-  const loginCard = document.getElementById("loginCard");
-  const appArea = document.getElementById("appArea");
-  const menuUser = document.getElementById("menuUser");
-  const loginMsg = document.getElementById("loginMsg");
+    document.getElementById('activateKey').addEventListener('click', () => {
+      const key = document.getElementById('keyInput').value.trim();
+      if (validKeys.includes(key)) {
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+      } else {
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+      }
+    });
 
-  loginBtn.addEventListener("click", () => {
-    const user = document.getElementById("username").value.trim();
-    const pass = document.getElementById("password").value;
-    if (user === CORRECT_USER && pass === CORRECT_PASS) {
-      localStorage.setItem("demo_user", CORRECT_USER);
-      loginMsg.textContent = "Đăng nhập thành công";
-      loginMsg.style.color = "#34d399";
-      showApp(true);
-    } else {
-      loginMsg.textContent = "Sai tài khoản hoặc mật khẩu";
-      loginMsg.style.color = "#fda4af";
+
+    function createFireworks(toggle) {
+      const rect = toggle.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      for (let i = 0; i < 6; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.textContent = "⭐";
+
+        const angle = (Math.PI * 2 / 6) * i;
+        const distance = 40 + Math.random() * 20;
+        const dx = Math.cos(angle) * distance + "px";
+        const dy = Math.sin(angle) * distance + "px";
+
+        star.style.setProperty("--dx", dx);
+        star.style.setProperty("--dy", dy);
+
+        star.style.left = centerX + "px";
+        star.style.top = centerY + "px";
+
+        document.body.appendChild(star);
+        setTimeout(() => star.remove(), 1000);
+      }
     }
-  });
 
-  clearBtn.addEventListener("click", () => {
-    document.getElementById("username").value = "";
-    document.getElementById("password").value = "";
-    loginMsg.textContent = "";
-  });
+    // toggle + hiệu ứng
+    document.querySelectorAll(".toggle").forEach(toggle => {
+      toggle.addEventListener("click", () => {
+        toggle.classList.toggle("on");
+        createFireworks(toggle);
+      });
+    });
 
-  logoutBtn.addEventListener("click", () => {
-    localStorage.removeItem("demo_user");
-    showApp(false);
-  });
-
-  function showApp(show) {
-    if (show) {
-      loginCard.classList.add("hidden");
-      appArea.classList.remove("hidden");
-      logoutBtn.classList.remove("hidden");
-      menuUser.textContent = CORRECT_USER;
-    } else {
-      loginCard.classList.remove("hidden");
-      appArea.classList.add("hidden");
-      logoutBtn.classList.add("hidden");
-      menuUser.textContent = "Chưa đăng nhập";
+    
+    class GameAssistManager {
+      constructor(config) {
+        this.config = config;
+        this.state = {};
+        this.init();
+      }
+      init() {
+        document.querySelectorAll(".toggle[data-gun]").forEach(toggle => {
+          const gun = toggle.dataset.gun;
+          const saved = localStorage.getItem(this._key(gun));
+          if (saved === "true") {
+            toggle.classList.add("on");
+            this.state[gun] = true;
+          } else {
+            this.state[gun] = false;
+          }
+          toggle.addEventListener("click", () => {
+            const isOn = toggle.classList.contains("on");
+            this.state[gun] = isOn;
+            localStorage.setItem(this._key(gun), isOn);
+            this.applyAssist(gun, isOn);
+          });
+        });
+      }
+      _key(gun) { return `bamTam_${gun}`; }
+      applyAssist(gun, enabled) {
+        const cfg = this.config[gun];
+        if (!cfg) return;
+        if (enabled) {
+          console.log(`%c[ON] ${gun}: Bám tâm ${cfg.bamTam}%`, "color: #4cafef; font-weight: bold");
+        } else {
+          console.log(`%c[OFF] ${gun}: Hỗ trợ đã tắt`, "color: #f44336; font-weight: bold");
+        }
+      }
+      setAssistLevel(gun, percent) {
+        if (this.config[gun]) {
+          this.config[gun].bamTam = percent;
+          console.log(`%c${gun} bám tâm setting ${percent}%`, "color: #ffc107; font-style: italic");
+          if (this.state[gun]) this.applyAssist(gun, true);
+        }
+      }
+      getState(gun) { return this.state[gun] || false; }
     }
-  }
 
-  if(localStorage.getItem("demo_user") === CORRECT_USER){
-    showApp(true);
-  }
-
-  const beep = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_c5fb4cc9be.mp3");
-
-  function showDisplay(el, {text='ON', effects=[]} = {}){
-    el.textContent = text;
-    el.classList.add("on","animate-fade");
-    effects.forEach(cl=> el.classList.add(cl));
-    try { beep.currentTime = 0; beep.play().catch(()=>{}); } catch(e){}
-    setTimeout(()=> el.classList.remove("animate-fade","animate-shake","animate-glow","animate-bounce"), 900);
-  }
-
-  // ==== Chức năng 1 ====
-  const range1 = document.getElementById("range1");
-  const rangeVal = document.getElementById("rangeVal");
-  const switch1 = document.getElementById("switch1");
-  const onBtn1 = document.getElementById("onBtn1");
-  const display1 = document.getElementById("display1");
-  let switch1State = false;
-  function updateRange(){ rangeVal.textContent = range1.value + "%"; }
-  range1.addEventListener("input", updateRange);
-  updateRange();
-  function setSwitch1(state){
-    switch1State = !!state;
-    if(switch1State){
-      switch1.classList.add("on");
-      switch1.setAttribute("aria-checked","true");
-      onBtn1.classList.remove("hidden");
-    } else {
-      switch1.classList.remove("on");
-      switch1.setAttribute("aria-checked","false");
-      onBtn1.classList.add("hidden");
-      display1.textContent = "—";
-      display1.classList.remove("on");
-    }
-  }
-  switch1.addEventListener("click", ()=> setSwitch1(!switch1State));
-  switch1.addEventListener("keydown", (e)=> { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); setSwitch1(!switch1State); } });
-  onBtn1.addEventListener("click", ()=> showDisplay(display1, {text:"ON", effects:["animate-glow"]}));
-
-  // ==== Chức năng 2 ====
-  const showOn2 = document.getElementById("showOn2");
-  const onBtn2 = document.getElementById("onBtn2");
-  const display2 = document.getElementById("display2");
-  showOn2.addEventListener("click", ()=> onBtn2.classList.toggle("hidden"));
-  onBtn2.addEventListener("click", ()=> showDisplay(display2, {text:"ON", effects:["animate-shake"]}));
-
-  // ==== Chức năng 3 ====
-  const pickFileBtn = document.getElementById("pickFileBtn");
-  const fileInput = document.getElementById("fileInput");
-  const display3 = document.getElementById("display3");
-  pickFileBtn.addEventListener("click", ()=> fileInput.click());
-  fileInput.addEventListener("change", (e)=>{
-    const f = e.target.files && e.target.files[0];
-    if(f){ showDisplay(display3, {text:`ON — ${f.name}`, effects:["animate-bounce"]}); }
-    else { display3.textContent = "—"; display3.classList.remove("on"); }
-  });
-
-  // ==== Chức năng 4 ====
-  const dropArea = document.getElementById("dropArea");
-  const dropInput = document.getElementById("dropInput");
-  const display4 = document.getElementById("display4");
-  dropArea.addEventListener("click", ()=> dropInput.click());
-  ["dragenter","dragover","dragleave","drop"].forEach(evt=>{
-    dropArea.addEventListener(evt, (e)=> { e.preventDefault(); e.stopPropagation(); });
-  });
-  dropArea.addEventListener("dragenter", ()=> dropArea.classList.add("drag"));
-  dropArea.addEventListener("dragover", ()=> dropArea.classList.add("drag"));
-  dropArea.addEventListener("dragleave", ()=> dropArea.classList.remove("drag"));
-  dropArea.addEventListener("drop", (e)=>{
-    dropArea.classList.remove("drag");
-    const dt = e.dataTransfer;
-    if(dt && dt.files && dt.files.length){
-      const f = dt.files[0];
-      showDisplay(display4, {text:`ON — ${f.name}`, effects:["animate-bounce"]});
-    }
-  });
-
-  // ==== Nút Chạy tất cả ====
-  const runAllBtn = document.getElementById("runAllBtn");
-  runAllBtn.addEventListener("click", ()=>{
-    const overlay = document.createElement("div");
-    overlay.id = "overlay";
-    overlay.textContent = "Chiến Đê";
-    document.body.appendChild(overlay);
-    setTimeout(()=> overlay.remove(), 2000);
-  });
-</script>
+    const assistManager = new GameAssistManager({
+      "UMP":   { bamTam: 40 },
+      "MP40":  { bamTam: 40 },
+      "M1887": { bamTam: 40 },
+      "DESERT EAGLE": { bamTam: 40 }
+    });
+    assistManager.setAssistLevel("UMP", 55);
+  </script>
+</body>
+</html>
 </body>
 </html>
